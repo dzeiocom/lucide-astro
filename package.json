@@ -1,0 +1,33 @@
+{
+	"name": "lucide-astro",
+	"version": "0.256.0",
+	"description": "Get your Lucide icons right into your Astro project",
+	"main": "dist/index.js",
+	"homepage": "https://github.com/dzeiocom/lucide-astro",
+	"repository": "https://github.com/dzeiocom/lucide-astro.git",
+	"scripts": {
+		"prepublish": "node src/build.js",
+		"build": "node src/build.js"
+	},
+	"type": "module",
+	"exports": {
+		".": "./dist/index.js"
+	},
+	"sideEffects": false,
+	"keywords": [
+		"astro",
+		"lucide",
+		"icons"
+	],
+	"author": "Aviortheking",
+	"license": "MIT",
+	"devDependencies": {
+		"lucide-static": "0.256.0"
+	},
+	"peerDependencies": {
+		"astro": "^2.7.1"
+	},
+	"files": [
+		"dist"
+	]
+}
