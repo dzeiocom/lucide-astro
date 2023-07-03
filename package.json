@@ -1,6 +1,6 @@
 {
 	"name": "lucide-astro",
-	"version": "0.256.1",
+	"version": "0.258.0",
 	"description": "Get your Lucide icons right into your Astro project",
 	"main": "dist/index.js",
 	"homepage": "https://github.com/dzeiocom/lucide-astro",
@@ -22,7 +22,7 @@
 	"author": "Aviortheking",
 	"license": "MIT",
 	"devDependencies": {
-		"lucide-static": "0.256.0"
+		"lucide-static": "0.258.0"
 	},
 	"peerDependencies": {
 		"astro": "^2.7.1"
