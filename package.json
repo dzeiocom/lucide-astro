@@ -4,6 +4,7 @@
 	"description": "Get your Lucide icons right into your Astro project",
 	"main": "dist/index.js",
 	"homepage": "https://github.com/dzeiocom/lucide-astro",
+	"bugs": "https://github.com/dzeiocom/lucide-astro/issues",
 	"repository": "https://github.com/dzeiocom/lucide-astro.git",
 	"scripts": {
 		"prepublish": "node src/build.js",
@@ -17,7 +18,8 @@
 	"keywords": [
 		"astro",
 		"lucide",
-		"icons"
+		"icons",
+		"astro-component"
 	],
 	"author": "Aviortheking",
 	"license": "MIT",
