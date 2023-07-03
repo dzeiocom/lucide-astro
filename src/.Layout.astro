@@ -1,0 +1,34 @@
+---
+import type { Props as IconProps } from './index.d.ts'
+
+export interface Props {
+	iconProps?: IconProps
+}
+
+const {
+	size = 24,
+	strokeWidth = 2,
+	width = size,
+	height = size,
+	stroke = 'currentColor',
+	strokeLinecap = 'round',
+	strokeLinejoin = 'round',
+	fill = 'none',
+	viewBox = '0 0 24 24'
+} = (Astro.props.iconProps ?? {})
+---
+
+<svg
+	xmlns="http://www.w3.org/2000/svg"
+	class={Astro.props.iconProps?.class}
+	width={width}
+	height={height}
+	fill={fill}
+	viewBox={viewBox}
+	stroke={stroke}
+	stroke-width={strokeWidth}
+	stroke-linecap={strokeLinecap}
+	stroke-linejoin={strokeLinejoin}
+>
+	<slot />
+</svg>
