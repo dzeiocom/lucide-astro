@@ -1,0 +1,18 @@
+{
+  "name": "lucide-astro-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/tailwind": "^4",
+    "@dzeio/object-util": "^1",
+    "astro": "^2",
+    "lucide-astro": "../",
+    "tailwindcss": "^3"
+  }
+}

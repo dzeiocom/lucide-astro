@@ -1,0 +1,49 @@
+---
+import * as LucideAstro from 'lucide-astro'
+import { Github } from 'lucide-astro'
+import { objectMap } from '@dzeio/object-util'
+
+import LucideLight from '../assets/lucide.light.svg'
+import LucideDark from '../assets/lucide.dark.svg'
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<script defer data-domain="lucide-astro.dzeio.com" src="/js/script.js" />
+		<title>Lucide Icons for Astro</title>
+	</head>
+	<body class="bg-gray-50 dark:bg-gray-950 dark:text-white">
+		<div class="flex w-full justify-evenly my-8 px-4">
+			<p class="font-bold text-xl flex gap-2 items-center">
+				<img height={48} src={LucideLight.src} class="block dark:hidden" />
+				<img height={48} src={LucideDark.src} class="hidden dark:block" />
+				<span>Lucide Icons for the Astro Framework</span>
+			</p>
+			<a target="_blank" class="flex gap-2 items-center" href="https://github.com/dzeiocom/lucide-astro">
+				<span class="hidden md:block">See the Code on</span>
+				<Github />
+			</a>
+		</div>
+		<div class="container flex m-auto flex-wrap gap-4">
+			{objectMap(LucideAstro, (Icon, key: string) => (
+				<div>
+					<Icon size={32} />
+					<p>{/^I\d/g.test(key) ? key.slice(1) : key}</p>
+				</div>
+			))}
+		</div>
+	</body>
+</html>
+
+<style is:global>
+	.container div {
+		@apply flex-auto w-5/12 sm:w-3/12 md:w-2/12 xl:w-1/12 bg-gray-200 dark:bg-gray-800 p-4 flex flex-col gap-1 items-center rounded-lg
+	}
+	.container p {
+		@apply w-full text-ellipsis overflow-x-hidden text-center
+	}
+</style>
