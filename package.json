@@ -4,7 +4,7 @@
 	"description": "Get your Lucide icons right into your Astro project",
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
-	"homepage": "https://github.com/dzeiocom/lucide-astro",
+	"homepage": "https://lucide-astro.dzeio.com",
 	"bugs": "https://github.com/dzeiocom/lucide-astro/issues",
 	"repository": "https://github.com/dzeiocom/lucide-astro.git",
 	"scripts": {
