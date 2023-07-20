@@ -12,7 +12,7 @@
     "@astrojs/tailwind": "^4",
     "@dzeio/object-util": "^1",
     "astro": "^2",
-    "lucide-astro": "../",
+    "lucide-astro": "*",
     "tailwindcss": "^3"
   }
 }

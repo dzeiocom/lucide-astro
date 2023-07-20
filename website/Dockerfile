@@ -26,13 +26,13 @@ RUN npm run build
 ##############
 # Production #
 ##############
-FROM docker.io/nginx:1-alpine
+FROM docker.io/nginx:1-alpine as PROD_IMAGE
 
 # go to NGINX folder
 WORKDIR /usr/share/nginx/html
 
 # Copy the nginx config
-ADD ./.docker/nginx.conf /etc/nginx/nginx.conf
+ADD ./nginx.conf /etc/nginx/nginx.conf
 
 # Copy dist fro mthe build image
 COPY --from=BUILD_IMAGE /home/node/dist ./
