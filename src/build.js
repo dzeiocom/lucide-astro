@@ -2,6 +2,7 @@ import fs from 'fs/promises'
 import Lucide from "lucide-static"
 
 // reset the dist folder
+console.log('deleting the dist folder')
 await fs.rm('./dist', { recursive: true, force: true})
 await fs.mkdir('./dist')
 
@@ -17,6 +18,7 @@ function fillTemplate(icon) {
 }
 
 // copy the base layout
+console.log('copying base layout')
 await fs.copyFile('./src/.Layout.astro', './dist/.Layout.astro')
 
 // get the base index.d.ts file
@@ -27,6 +29,7 @@ try {
 	let index = ''
 
 	// loop through each icons
+	console.log('creating every icons')
 	for (const name in Lucide) {
 		// get its SVG
 		const icon = Lucide[name]
@@ -46,6 +49,8 @@ try {
 	// write the index to the js and d.ts files
 	await fs.writeFile('./dist/index.js', index, 'utf-8')
 	await fs.writeFile('./dist/index.d.ts', inter + index, 'utf-8')
+	process.exit(0)
 } catch (e) {
 	console.error('Error building the Library', e)
+	process.exit(1)
 }
