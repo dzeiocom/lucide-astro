@@ -5,47 +5,47 @@
 name: Build & Package
 
 on:
-	schedule:
-		# * is a special character in YAML so you have to quote this string
-		- cron: '0 */6 * * *'
-	workflow_dispatch:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
 
 jobs:
-	run:
-		runs-on: ubuntu-latest
-		steps:
-			- uses: actions/checkout@v3
-				with:
-					persist-credentials: false 
-					fetch-depth: 0
-			- uses: actions/setup-node@v3
-				with:
-					node-version: 20
-					registry-url: https://registry.npmjs.org/
-			- name: Upgrade
-				id: upgrade
-				run: node upgrade.js
-				continue-on-error: true
-			- name: Install
-				run: npm i
-				if: steps.upgrade.outcome == 'success' && steps.upgrade.conclusion == 'success'
-			- name: Build
-				run: npm run build
-				if: steps.upgrade.outcome == 'success' && steps.upgrade.conclusion == 'success'
-			- name: Publish on NPM
-				run: npm publish
-				if: steps.upgrade.outcome == 'success' && steps.upgrade.conclusion == 'success'
-				env:
-					NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-			- name: Commit files
-				run: |
-					git config --local user.email "github@dzeio.com"
-					git config --local user.name "Dzeio BOT"
-					git commit -a -m "bump from remote"
-				if: steps.upgrade.outcome == 'success' && steps.upgrade.conclusion == 'success'
-			- name: Push changes
-				uses: ad-m/github-push-action@master
-				with:
-					github_token: ${{ secrets.GIT_TOKEN }}
-					branch: ${{ github.ref }}
-				if: steps.upgrade.outcome == 'success' && steps.upgrade.conclusion == 'success'
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false 
+          fetch-depth: 0
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org/
+      - name: Upgrade
+        id: upgrade
+        run: node upgrade.js
+        continue-on-error: true
+      - name: Install
+        run: npm i
+        if: steps.upgrade.outcome == 'success' && steps.upgrade.conclusion == 'success'
+      - name: Build
+        run: npm run build
+        if: steps.upgrade.outcome == 'success' && steps.upgrade.conclusion == 'success'
+      - name: Publish on NPM
+        run: npm publish
+        if: steps.upgrade.outcome == 'success' && steps.upgrade.conclusion == 'success'
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - name: Commit files
+        run: |
+          git config --local user.email "github@dzeio.com"
+          git config --local user.name "Dzeio BOT"
+          git commit -a -m "bump from remote"
+        if: steps.upgrade.outcome == 'success' && steps.upgrade.conclusion == 'success'
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GIT_TOKEN }}
+          branch: ${{ github.ref }}
+        if: steps.upgrade.outcome == 'success' && steps.upgrade.conclusion == 'success'
