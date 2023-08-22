@@ -1,12 +1,7 @@
-export interface Props {
+/// <reference types="astro/astro-jsx" />
+
+export interface Props extends astroHTML.JSX.SVGAttributes {
 	size?: number
+	// https://github.com/withastro/astro/pull/8189
 	width?: number
-	height?: number
-	strokeWidth?: number
-	stroke?: string
-	fill?: string
-	class?: string
-	viewBox?: string
-	strokeLinecap?: "round" | "butt" | "square" | "inherit"
-	strokeLinejoin?: "round" | "inherit" | "miter" | "bevel"
 }

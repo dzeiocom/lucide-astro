@@ -14,8 +14,8 @@ WORKDIR /home/node
 # Add package json
 ADD --chown=node:node package.json package-lock.json ./
 
-# install dependencies from package lock
-RUN npm ci
+# install dependencies from package JSON (to keep being up to date with lucide-astro)
+RUN npm i
 
 # Add project files
 ADD --chown=node:node . .

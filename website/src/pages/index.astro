@@ -2,7 +2,7 @@
 import * as LucideAstro from 'lucide-astro'
 import { Github } from 'lucide-astro'
 import { objectMap } from '@dzeio/object-util'
-
+import { Image } from 'astro:assets'
 import LucideLight from '../assets/lucide.light.svg'
 import LucideDark from '../assets/lucide.dark.svg'
 ---
@@ -19,8 +19,8 @@ import LucideDark from '../assets/lucide.dark.svg'
 	<body class="bg-gray-50 dark:bg-gray-950 dark:text-white">
 		<div class="flex w-full justify-evenly my-8 px-4">
 			<p class="font-bold text-xl flex gap-2 items-center">
-				<img height={48} src={LucideLight.src} class="block dark:hidden" />
-				<img height={48} src={LucideDark.src} class="hidden dark:block" />
+				<Image height={48} src={LucideLight} class="dark:hidden" alt="Astro Logo" />
+				<Image height={48} src={LucideDark} class="hidden dark:block" alt="Astro Logo" />
 				<span>Lucide Icons for the Astro Framework</span>
 			</p>
 			<a target="_blank" class="flex gap-2 items-center" href="https://github.com/dzeiocom/lucide-astro">
