@@ -31,8 +31,10 @@ jobs:
         if: steps.upgrade.outcome == 'success' && steps.upgrade.conclusion == 'success'
       - name: Build
         run: npm run build
+        if: steps.upgrade.outcome == 'success' && steps.upgrade.conclusion == 'success'
       - name: Publish on NPM
         run: npm publish
+        if: steps.upgrade.outcome == 'success' && steps.upgrade.conclusion == 'success'
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
       - name: Commit files
@@ -40,8 +42,10 @@ jobs:
           git config --local user.email "github@dzeio.com"
           git config --local user.name "Dzeio BOT"
           git commit -a -m "bump from remote"
+        if: steps.upgrade.outcome == 'success' && steps.upgrade.conclusion == 'success'
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GIT_TOKEN }}
           branch: ${{ github.ref }}
+        if: steps.upgrade.outcome == 'success' && steps.upgrade.conclusion == 'success'
