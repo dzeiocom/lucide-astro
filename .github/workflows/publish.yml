@@ -1,0 +1,33 @@
+
+# ENV needed:
+# GIT_TOKEN
+# NPM_TOKEN
+name: Manual publish
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install
+        run: npm i
+
+      - name: Build
+        run: npm run build
+
+      - name: Publish on NPM
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
