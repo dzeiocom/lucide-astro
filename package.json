@@ -1,6 +1,6 @@
 {
 	"name": "lucide-astro",
-	"version": "0.294.0",
+	"version": "0.294.1",
 	"description": "Get your Lucide icons right into your Astro project",
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
