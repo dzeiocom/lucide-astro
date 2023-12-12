@@ -26,7 +26,8 @@
 	"author": "Aviortheking",
 	"license": "MIT",
 	"devDependencies": {
-		"lucide-static": "0.294.0"
+		"lucide-static": "0.294.0",
+		"semver": "^7.5.4"
 	},
 	"peerDependencies": {
 		"astro": ">=2.7.1"

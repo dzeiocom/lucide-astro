@@ -1,4 +1,5 @@
 import fs from 'node:fs/promises'
+import semver from 'semver'
 /**
  * Javascript script linked to `upgrade.sh`
  */
@@ -10,6 +11,7 @@ const upstreamPackage = 'lucide-static'
 
 	const check = await fetch(`https://registry.npmjs.com/${upstreamPackage}`).then((it) => it.json())
 	const newVersion = check['dist-tags']?.latest
+
 	if (!newVersion) {
 		console.error('no new version found :(')
 		process.exit(1)
@@ -18,6 +20,12 @@ const upstreamPackage = 'lucide-static'
 		console.log('no diff in version, ending')
 		process.exit(1)
 	}
+
+	if (!semver.gt(newVersion, pkgVersion)) {
+		console.log('package version', pkgVersion, 'higher than upstream version', newVersion, 'skipping update')
+		process.exit(1)
+	}
+
 	console.log('diff in version, update needed')
 	pkg.version = newVersion
 	pkg.devDependencies[upstreamPackage] = newVersion
