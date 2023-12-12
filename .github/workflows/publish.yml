@@ -2,7 +2,7 @@
 # ENV needed:
 # GIT_TOKEN
 # NPM_TOKEN
-name: Build & Package
+name: Manual publish
 
 on:
   workflow_dispatch:
@@ -19,7 +19,6 @@ jobs:
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
-        continue-on-error: true
       - name: Install
         run: npm i
       - name: Build
