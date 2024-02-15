@@ -1,21 +1,25 @@
 ---
 export type { Props } from './index.d.ts'
 
+// extract and remove the size shortcut
 const size = Astro.props.size
 delete Astro.props.size
+
+// allow the user's props to redefine our defaults
+const props = Object.assign({
+	'xmlns': 'http://www.w3.org/2000/svg',
+	'stroke-width': 2
+	'width': size ?? 24,
+	'height': size ?? 24,
+	'stroke': 'currentColor',
+	'stroke-linecap': 'round',
+	'stroke-linejoin': 'round',
+	'fill': 'none',
+	'viewBox': '0 0 24 24'
+}, Astro.props)
+
 ---
 
-<svg
-	xmlns="http://www.w3.org/2000/svg"
-	stroke-width={2}
-	width={size ?? 24}
-	height={size ?? 24}
-	stroke="currentColor"
-	stroke-linecap="round"
-	stroke-linejoin="round"
-	fill="none"
-	viewBox="0 0 24 24"
-	{...Astro.props}
->
+<svg {...props}>
 	<slot />
 </svg>
