@@ -27,4 +27,4 @@ jobs:
 
     - name: Check
       run: |
-        cd website && npm ci && cp ../dist/* ./node_modules/lucide-astro/dist/ && cp ../dist/.* ./node_modules/lucide-astro/dist/ && npm run build
+        cd website && npm ci && cp ../dist/* ./node_modules/lucide-astro/dist/ && cp ../dist/.Layout.astro ./node_modules/lucide-astro/dist/ && npm run build
