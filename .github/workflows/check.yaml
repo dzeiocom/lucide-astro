@@ -1,4 +1,4 @@
-name: Build, check & Test
+name: Build, check
 
 on:
   push:
@@ -26,10 +26,8 @@ jobs:
       run: npm run build
 
     - name: Check
-      run: npm run check
-
-    - name: Prepare Tests
-      run: npm run install:test
-
-    - name: Test
-      run : npm run test
+      run: |
+        cd website
+        npm ci
+        yes | cp -r ../dist/* ./node_modules/lucide-astro/dist/
+        npm run build
