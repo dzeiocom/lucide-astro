@@ -29,5 +29,5 @@ jobs:
       run: |
         cd website
         npm ci
-        yes | cp -r ../dist/* ./node_modules/lucide-astro/dist/
+        cp -r ../dist/* ./node_modules/lucide-astro/dist/
         npm run build
