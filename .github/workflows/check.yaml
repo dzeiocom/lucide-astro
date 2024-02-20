@@ -1,0 +1,30 @@
+name: Build, check
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Use Node.js 20
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build
+      run: npm run build
+
+    - name: Check
+      run: |
+        cd website && npm ci && cp ../dist/* ./node_modules/lucide-astro/dist/ && cp ../dist/.Layout.astro ./node_modules/lucide-astro/dist/ && npm run build
