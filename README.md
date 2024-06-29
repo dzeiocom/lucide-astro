@@ -24,6 +24,10 @@ npm i lucide-astro
 yarn add lucide-astro
 ```
 
+```
+pnpm add lucide-astro
+```
+
 ## Usage
 
 You can import each icons individually like below
