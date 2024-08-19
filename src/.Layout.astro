@@ -1,9 +1,13 @@
 ---
 export type { Props } from './index.d.ts'
 
-// extract and remove the size shortcut
+// extract and remove special parameters
 const size = Astro.props.size
+const cls = Astro.props.class
+const name = Astro.props.iconName
 delete Astro.props.size
+delete Astro.props.class
+delete Astro.props.iconName
 
 // allow the user's props to redefine our defaults
 const props = Object.assign({
@@ -17,9 +21,8 @@ const props = Object.assign({
 	'fill': 'none',
 	'viewBox': '0 0 24 24'
 }, Astro.props)
-
 ---
 
-<svg {...props}>
+<svg {...props} class:list={['lucide', { [`lucide-${name}`]: name }, cls]}>
 	<slot />
 </svg>
