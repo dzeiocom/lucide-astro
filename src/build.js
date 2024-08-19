@@ -10,11 +10,16 @@ await fs.mkdir('./dist')
 const template = await fs.readFile('./src/Template.astro', 'utf8')
 
 // funciton tht fill the template with the icon SVG
-function fillTemplate(icon) {
-	return template.replace(
-		'<!-- icon -->',
-		icon.replace(/<svg(?:.|\n)*?>((?:.|\n)*)<\/svg>/gm, '$1').replace(/  /g, '\t').trim()
-	)
+function fillTemplate(name, icon) {
+	return template
+		.replace(
+			'<!-- name -->',
+			name
+		)
+		.replace(
+			'<!-- icon -->',
+			icon.replace(/<svg(?:.|\n)*?>((?:.|\n)*)<\/svg>/gm, '$1').replace(/  /g, '\t').trim()
+		)
 }
 
 // copy the base layout
@@ -41,7 +46,7 @@ try {
 		const filePath = `./dist/${fullName}.astro`;
 
 		// compile the icon and write it out
-		await fs.writeFile(filePath, fillTemplate(icon), "utf-8");
+		await fs.writeFile(filePath, fillTemplate(name, icon), "utf-8");
 
 		// add the icon to the index
 		index += `export { default as ${fullName} } from './${fullName}.astro'\n`
