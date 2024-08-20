@@ -1,4 +1,4 @@
-import fs from 'fs/promises'
+import { promises as fs } from 'node:fs'
 import Lucide from "lucide-static"
 
 // reset the dist folder
@@ -10,12 +10,17 @@ await fs.mkdir('./dist')
 const template = await fs.readFile('./src/Template.astro', 'utf8')
 
 // funciton tht fill the template with the icon SVG
-function fillTemplate(name, icon) {
-	return template
-		.replace(
+function fillTemplate(icon) {
+	const regex = /lucide-([0-9a-z-]*)/g
+	const regexResult = regex.exec(icon)
+	let final = template
+	if (regexResult) {
+		final = final.replace(
 			'<!-- name -->',
-			name
+			regexResult[1]
 		)
+	}
+	return final
 		.replace(
 			'<!-- icon -->',
 			icon.replace(/<svg(?:.|\n)*?>((?:.|\n)*)<\/svg>/gm, '$1').replace(/  /g, '\t').trim()
@@ -46,7 +51,7 @@ try {
 		const filePath = `./dist/${fullName}.astro`;
 
 		// compile the icon and write it out
-		await fs.writeFile(filePath, fillTemplate(name, icon), "utf-8");
+		await fs.writeFile(filePath, fillTemplate(icon), "utf-8");
 
 		// add the icon to the index
 		index += `export { default as ${fullName} } from './${fullName}.astro'\n`

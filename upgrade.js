@@ -1,4 +1,4 @@
-import fs from 'node:fs/promises'
+import { promises as fs } from 'node:fs'
 import semver from 'semver'
 /**
  * Javascript script linked to `upgrade.sh`
